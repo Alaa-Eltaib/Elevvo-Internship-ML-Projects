@@ -40,7 +40,7 @@ The dataset contains **4269 rows** and **13 columns**:
 ## Installation & Requirements
 
 * Python 3.11+
-* Required Python packages (can install via `requirements.txt`):
+* Required Python packages:
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn xgboost imbalanced-learn kagglehub streamlit joblib
