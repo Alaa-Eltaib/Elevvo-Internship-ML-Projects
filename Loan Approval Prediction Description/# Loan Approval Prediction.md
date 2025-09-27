@@ -1,50 +1,54 @@
 # Loan Approval Prediction
 
-## Project Description
-
-This project builds a machine learning model to predict whether a loan application will be approved or rejected. The dataset used is the [Loan-Approval-Prediction-Dataset](https://www.kaggle.com/datasets/architsharma01/loan-approval-prediction-dataset) from Kaggle.
-
-The project covers:
-
-* Binary classification
-* Handling imbalanced data
-* Feature preprocessing (handling missing values, encoding categorical features)
-* Model evaluation focusing on **Precision, Recall, and F1-score**
-* Bonus: using **SMOTE** to address class imbalance
-* **Interactive GUI for loan prediction using Streamlit**
+This project aims to build and evaluate machine learning models to predict **loan approval status** based on applicant and financial details.  
+The dataset was obtained from [Kaggle](https://www.kaggle.com/datasets/architsharma01/loan-approval-prediction-dataset).
 
 ---
 
-## Dataset
+## 📂 Project Structure
 
-The dataset contains **4269 rows** and **13 columns**:
+- **Data Loading**  
+  Downloaded via `kagglehub`, cleaned, and preprocessed.  
+  - Removed extra spaces in column names.  
+  - Encoded target column (`loan_status`: Approved → 1, Rejected → 0).  
+  - Split dataset into numeric and categorical features.
 
-| Column                     | Description                                |
-| -------------------------- | ------------------------------------------ |
-| `loan_id`                  | Unique identifier                          |
-| `no_of_dependents`         | Number of dependents                       |
-| `education`                | Education level                            |
-| `self_employed`            | Whether applicant is self-employed         |
-| `income_annum`             | Annual income                              |
-| `loan_amount`              | Loan amount                                |
-| `loan_term`                | Loan term (months)                         |
-| `cibil_score`              | Credit score                               |
-| `residential_assets_value` | Residential assets value                   |
-| `commercial_assets_value`  | Commercial assets value                    |
-| `luxury_assets_value`      | Luxury assets value                        |
-| `bank_asset_value`         | Bank assets value                          |
-| `loan_status`              | Target variable (`Approved` or `Rejected`) |
+- **Preprocessing**  
+  - **Numerical Features** → Median imputation + Standard Scaling.  
+  - **Categorical Features** → Most frequent imputation + One-hot encoding.  
+  - Combined using `ColumnTransformer`.
+
+- **Models Tested**
+  - Logistic Regression (with/without SMOTE)
+  - Decision Tree
+  - Random Forest
+  - XGBoost
+
+- **Evaluation Metrics**
+  - Precision  
+  - Recall  
+  - F1-score  
+
+- **Model Comparison Table (Top Results)**  
+
+  | Model                | Precision | Recall | F1-score |
+  |-----------------------|-----------|--------|----------|
+  | Random Forest         | 0.985     | 0.987  | 0.986    |
+  | XGBoost              | 0.981     | 0.987  | 0.984    |
+  | Decision Tree         | 0.978     | 0.987  | 0.982    |
+  | Logistic Regression   | 0.955     | 0.921  | 0.938    |
+  | Logistic + SMOTE      | 0.951     | 0.923  | 0.937    |
 
 ---
 
-## Installation & Requirements
+## ✅ Best Model
 
-* Python 3.11+
-* Required Python packages:
+The **Random Forest Classifier** achieved the highest performance.  
+It was retrained on the full dataset and saved as:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost imbalanced-learn kagglehub streamlit joblib
-```
+loan_model.pkl
+
 
 ---
 
